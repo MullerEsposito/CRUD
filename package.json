@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsnd src/server.ts",
-    "typeorm": "tsnd ./node_modules/typeorm/cli -d src/database/indexNewVersion.ts",
-    "typeorm:create": "tsnd ./node_modules/typeorm/cli migration:generate -d src/database/indexNewVersion.ts",
+    "typeorm": "typeorm-ts-node-esm",
+    "typeorm:generate": "sh -c 'typeorm-ts-node-esm migration:generate src/database/migrations/$0 -d src/database/indexNewVersion.ts'",
+    "typeorm:create": "sh -c 'typeorm-ts-node-esm migration:create src/database/migrations/$0'",
+    "typeorm:run": "typeorm-ts-node-esm migration:run -d src/database/indexNewVersion.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -22,6 +24,7 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/uuid": "^8.3.4",
+    "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.4"
   }
